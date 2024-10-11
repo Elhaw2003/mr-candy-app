@@ -11,6 +11,7 @@ class MrCandyApp extends StatelessWidget {
     return MaterialApp(
 
       debugShowCheckedModeBanner: false,
+
     );
   }
 }
