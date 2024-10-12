@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:mr_candy_app/core/utilies/app_texts.dart';
+import 'package:mr_candy_app/featuers/onboarding/data/lists/onboarding_list.dart';
 
 import '../../../../../core/utilies/app_colors.dart';
 import '../../../../../core/utilies/app_images.dart';
 
-class StackWidget extends StatelessWidget {
-  const StackWidget({super.key});
-
+class ShapeItemWidget extends StatelessWidget {
+  const ShapeItemWidget({super.key,  required this.index});
+  final int index;
   @override
   Widget build(BuildContext context) {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Image.asset(AppImages.containerOnboarding),
+        Image.asset(AppImages.shapeOnboarding),
         Image.asset(
-          AppImages.onboarding1,
-          width: 272,
-          height: 181,
+          OnboardingList().onBoardings[index].image,
+          width: OnboardingList().onBoardings[index].widthImage,
+          height: OnboardingList().onBoardings[index].heightImage,
         ),
-        const Positioned(
+         Positioned(
           top: 52,
           left: 33,
           child: Text(
-            AppTexts.skip,
-            style: TextStyle(
+            index < OnboardingList().onBoardings.length-1 ?AppTexts.skip:"",
+            style: const TextStyle(
               color: AppColors.white,
               fontWeight: FontWeight.w700,
               fontSize: 14,
