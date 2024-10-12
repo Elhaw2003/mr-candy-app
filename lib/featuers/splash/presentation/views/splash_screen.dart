@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mr_candy_app/featuers/onboarding/presentation/views/onboarding_screen.dart';
 import 'package:mr_candy_app/featuers/splash/presentation/views/widgets/splash_body.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,7 +15,11 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     Future.delayed(
         const Duration(seconds: 4),
-        (){}
+        (){
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (c){
+            return const OnboardingScreen();
+          }));
+        }
     );
   }
   @override
