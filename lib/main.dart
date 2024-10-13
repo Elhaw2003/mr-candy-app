@@ -13,6 +13,7 @@ class MrCandyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return  MaterialApp(
       theme: ThemeData(
+
         fontFamily: AppFonts.almarai,
       ),
       debugShowCheckedModeBanner: false,
