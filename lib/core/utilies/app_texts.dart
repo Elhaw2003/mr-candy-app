@@ -8,4 +8,6 @@ class AppTexts{
   static const String descInOnboarding1 = """هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى\n المقروء لصفحة ما سيلهي القارئ عن التركيز على """;
   static const String descInOnboarding2 = """هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى\n المقروء لصفحة ما سيلهي القارئ عن التركيز على """;
   static const String descInOnboarding3 = """هناك حقيقة مثبتة منذ زمن طويل وهي أن المحتوى\n المقروء لصفحة ما سيلهي القارئ عن التركيز على """;
+  static const String insertEmail = "ادخل البريد الألكتروني";
+  static const String insertPassword = "ادخل كلمة المرور";
 }

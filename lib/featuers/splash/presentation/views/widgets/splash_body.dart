@@ -11,20 +11,6 @@ class SplashBody extends StatelessWidget {
     return Stack(
       alignment: Alignment.center,
       children: [
-        Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [
-                  AppColors.blue,
-                  AppColors.purple,
-                ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            )
-          ),
-        ),
         BounceInLeft(
             duration: const Duration(seconds: 3),
             child: const ImageLogoWidget()
