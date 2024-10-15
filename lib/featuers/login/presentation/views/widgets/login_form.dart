@@ -28,7 +28,7 @@ class LoginForm extends StatelessWidget {
           ),
           SizedBox(height: 24,),
           CustomTextFormField(
-            text: AppTexts.insertEmail,
+            text: AppTexts.insertPassword,
             icon: Icon(Icons.lock_outlined,color: AppColors.mixPurpleAndBlue,),
           ),
           SizedBox(height: 46,),
@@ -54,7 +54,7 @@ class LoginForm extends StatelessWidget {
               ),
             ),
           ],
-          )
+          ),
         ],
       ),
     );
