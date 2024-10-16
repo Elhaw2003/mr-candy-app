@@ -13,6 +13,7 @@ class AppTexts{
   static const String login = "تسجيل الدخول";
   static const String haveNotAnyAccount = "ليس لديك حساب؟";
   static const String createAccount = "قم بإنشاء حساب";
-  static const String error = "Error";
-  static const String noInterNet = "NoInternet, Please Check for Internet";
+  static const String error = "يوجد خطأ";
+  static const String noInterNet = "لا يوجد انترنت , تحقق من الاتصال بالانترنت";
+  static const String successEnter = "تم التسجيل بنجاح";
 }

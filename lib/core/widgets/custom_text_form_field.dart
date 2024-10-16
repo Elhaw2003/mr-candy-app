@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mr_candy_app/core/utilies/app_colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
-  const CustomTextFormField({super.key, required this.icon, required this.text});
+  const CustomTextFormField({super.key, required this.icon, required this.text, required this.controller,});
   final Icon icon;
   final String text;
+  final TextEditingController controller;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      controller: controller,
       style: const TextStyle(
         color: AppColors.mixPurpleAndBlue
       ),

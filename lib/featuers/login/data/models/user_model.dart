@@ -10,7 +10,7 @@ class UserModel{
 final int id;
 final String name;
 final String email;
-final int phone;
+final String phone;
 final String image;
 final int points;
 final int credit;
