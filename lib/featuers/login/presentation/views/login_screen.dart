@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.mixPurpleAndBlue,
+      // backgroundColor: AppColors.mixPurpleAndBlue,
       body: BlocProvider(
         create: (context) => LoginCubit(LoginImplementationRepo()),
         child: const LoginBody(),
