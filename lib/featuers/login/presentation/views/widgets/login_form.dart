@@ -2,16 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mr_candy_app/core/widgets/custom_button.dart';
 import 'package:mr_candy_app/core/widgets/custom_text_form_field.dart';
-
+import 'package:mr_candy_app/featuers/create_account/presentation/view/create_account_screen.dart';
 import '../../../../../core/utilies/app_colors.dart';
-import '../../../../../core/utilies/app_texts.dart';
 import '../../../../../core/utilies/app_texts.dart';
 import '../../controller/login_cubit.dart';
 import '../../controller/login_states.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
-
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
@@ -86,20 +84,27 @@ class LoginForm extends StatelessWidget {
                 },
               )),
           const SizedBox(height: 24,),
-          const Column(
+           Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    AppTexts.createAccount,
-                    style: TextStyle(
-                        color: AppColors.grey,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (c){
+                        return const CreateAccountScreen();
+                      }));
+                    },
+                    child: const Text(
+                      AppTexts.createAccount,
+                      style: TextStyle(
+                          color: AppColors.grey,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12
+                      ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     AppTexts.haveNotAnyAccount,
                     style: TextStyle(
                         color: AppColors.grey,
@@ -109,7 +114,7 @@ class LoginForm extends StatelessWidget {
                   ),
                 ],
               ),
-              Divider(
+              const Divider(
                 color: AppColors.grey,
                 height: 0,
                 indent:80,
