@@ -15,14 +15,14 @@ class SplashBody extends StatelessWidget {
           width: double.infinity,
           height: double.infinity,
           decoration: const BoxDecoration(
-            gradient: LinearGradient(
+              gradient: LinearGradient(
                 colors: [
                   AppColors.blue,
                   AppColors.purple,
                 ],
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-            )
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              )
           ),
         ),
         BounceInLeft(
