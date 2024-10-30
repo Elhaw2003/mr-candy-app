@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mr_candy_app/core/widgets/custom_button.dart';
+import 'package:mr_candy_app/featuers/create_account/data/models/user_model_for_register.dart';
+import 'package:mr_candy_app/featuers/create_account/presentation/controller/register/register_cubit.dart';
+import 'package:mr_candy_app/featuers/create_account/presentation/controller/register/register_states.dart';
 import 'package:mr_candy_app/featuers/create_account/presentation/view/widgets/avatar_image.dart';
 
 import '../../../../../core/utilies/app_colors.dart';
 import '../../../../../core/utilies/app_texts.dart';
 import '../../../../../core/widgets/custom_text_form_field.dart';
+import '../../controller/image/select_image_cubit.dart';
 
 class CreateAccountForm extends StatelessWidget {
-  const CreateAccountForm({super.key});
+ const CreateAccountForm({super.key});
   @override
   Widget build(BuildContext context) {
     final TextEditingController emailController = TextEditingController();
@@ -25,8 +30,8 @@ class CreateAccountForm extends StatelessWidget {
       child: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 25),
         children: [
-          const SizedBox(height: 40,),
-          AvatarImage(),
+          const SizedBox(height: 25,),
+          const AvatarImage(),
           const SizedBox(height: 32,),
           CustomTextFormField(
             controller: nameController,
@@ -55,13 +60,102 @@ class CreateAccountForm extends StatelessWidget {
             icon: const Icon(
               Icons.lock_outlined, color: AppColors.mixPurpleAndBlue,),
           ),
-          const SizedBox(height: 46,),
-          const Center(
-            child:  CustomButton(
-                text: AppTexts.createAnAccount
+          const SizedBox(height: 30,),
+          Center(
+            child: GestureDetector(
+              onTap: () {
+                final bool emailValid =
+                RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                    .hasMatch(emailController.text.trim());
+                if(emailValid!= true){
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text(
+                      AppTexts.insertCorrectEmail,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600
+                      ),
+                      textDirection: TextDirection.rtl,
+                    ),
+                    backgroundColor: AppColors.mixPurpleAndBlue,
+                  ));
+                }
+                // bool validateStructure(String value){
+                //   String  pattern = r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
+                //   RegExp regExp =  RegExp(pattern);
+                //   return regExp.hasMatch(value);
+                // }
+                // if(!validateStructure(passwordController.text.trim())){
+                //   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                //     content: Text(
+                //       AppTexts.insertCorrectPassword,
+                //       style: TextStyle(
+                //           fontWeight: FontWeight.w600
+                //       ),
+                //       textDirection: TextDirection.rtl,
+                //     ),
+                //     backgroundColor: AppColors.mixPurpleAndBlue,
+                //   ));
+                // }
+               else if(BlocProvider.of<ImageCubit>(context).base64Image == null){
+                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                    content: Text(
+                      AppTexts.addImageProfile,
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600
+                      ),
+                      textDirection: TextDirection.rtl,
+                    ),
+                    backgroundColor: AppColors.mixPurpleAndBlue,
+                  ));
+                }else{
+                  BlocProvider.of<RegisterCubit>(context).registerFunInCubit(
+                    userModelForRegister: UserModelForRegister(
+                        name: nameController.text.trim(),
+                        email: emailController.text.trim(),
+                        phone: phoneController.text.trim(),
+                        image: BlocProvider.of<ImageCubit>(context).base64Image!,
+                        password: passwordController.text.trim()
+                    )
+                );
+                }
+              },
+              child: BlocConsumer<RegisterCubit, RegisterStates>(
+                listener: (context, state) {
+                  if(state is FailureRegisterState){
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text(
+                        state.errorMessage,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.w600
+                        ),
+                        textDirection: TextDirection.rtl,
+                      ),
+                      backgroundColor: AppColors.mixPurpleAndBlue,
+                    ));
+                  }else if(state is SuccessRegisterState){
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      content: Text(
+                        style:  TextStyle(
+                            fontWeight: FontWeight.w600
+                        ),
+                        AppTexts.successCreateAnAccount,
+                        textDirection: TextDirection.rtl,
+                      ),
+                      backgroundColor: AppColors.mixPurpleAndBlue,
+                    ));
+                  }
+                },
+                builder: (context, state) {
+                  return state is LoadingRegisterState ?  const CircularProgressIndicator(
+                    color: AppColors.mixPurpleAndBlue,
+                  ): const CustomButton(
+                      text: AppTexts.createAnAccount
+                  );
+                },
+              ),
             ),
           ),
-          const SizedBox(height: 24,),
+          const SizedBox(height: 18,),
           const Column(
             children: [
               Row(
@@ -88,7 +182,7 @@ class CreateAccountForm extends StatelessWidget {
               Divider(
                 color: AppColors.grey,
                 height: 0,
-                indent:90,
+                indent: 90,
                 endIndent: 174,
               )
             ],

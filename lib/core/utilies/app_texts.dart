@@ -14,6 +14,7 @@ class AppTexts{
   static const String haveNotAnyAccount = "ليس لديك حساب؟";
   static const String createAccount = "قم بإنشاء حساب";
   static const String createAnAccount = "إنشاء حساب";
+  static const String successCreateAnAccount = "تم إنشاء الحساب بنجاح";
   static const String error = "يوجد خطأ";
   static const String noInterNet = "لا يوجد انترنت , تحقق من الاتصال بالانترنت";
   static const String successEnter = "تم التسجيل بنجاح";
@@ -21,4 +22,9 @@ class AppTexts{
   static const String insertName = "ادخل الأسم";
   static const String haveYouAccount = "هل لديك حساب؟";
   static const String addImageProfile = "اضف صورة شخصية";
+  static const String imageAdded = "تمت اضافه الصوره";
+  static const String gallery = "Gallery";
+  static const String camera = "Camera";
+  static const String insertCorrectEmail = "برجاء ادخال الايميل بطريقه صحيحه";
+  static const String insertCorrectPassword = "برجاء ادخال كلمه المرور بطريقه صحيحه";
 }

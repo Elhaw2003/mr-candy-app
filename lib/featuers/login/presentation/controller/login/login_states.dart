@@ -4,8 +4,8 @@ abstract class LoginStates{}
 class InitialLoginState extends LoginStates{}
 class LoadingLoginState extends LoginStates{}
 class FailureLoginState extends LoginStates{
-  final String errorMessege;
-  FailureLoginState({required this.errorMessege});
+  final String errorMessage;
+  FailureLoginState({required this.errorMessage});
 }
 class SuccessLoginState extends LoginStates{
   final UserModel userModel;

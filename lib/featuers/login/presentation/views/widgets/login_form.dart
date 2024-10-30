@@ -5,8 +5,8 @@ import 'package:mr_candy_app/core/widgets/custom_text_form_field.dart';
 import 'package:mr_candy_app/featuers/create_account/presentation/view/create_account_screen.dart';
 import '../../../../../core/utilies/app_colors.dart';
 import '../../../../../core/utilies/app_texts.dart';
-import '../../controller/login_cubit.dart';
-import '../../controller/login_states.dart';
+import '../../controller/login/login_cubit.dart';
+import '../../controller/login/login_states.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({super.key});
@@ -47,7 +47,7 @@ class LoginForm extends StatelessWidget {
                   if(state is FailureLoginState){
                     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(
-                            state.errorMessege,
+                            state.errorMessage,
                             style: const TextStyle(
                               fontWeight: FontWeight.w600
                             ),
