@@ -1,4 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:mr_candy_app/core/utilies/my_hive.dart';
 import 'package:mr_candy_app/featuers/create_account/presentation/controller/register/register_states.dart';
 import '../../../data/models/user_model_for_register.dart';
 import '../../../data/repo/register_repo.dart';
@@ -22,7 +24,9 @@ class RegisterCubit extends Cubit<RegisterStates> {
         (left){
           emit(FailureRegisterState(errorMessage: left.message));
         },
-        (right){
+        (right)async{
+          var box = Hive.box(MyHive.settings);
+         await box.put("token", right.token);
           emit(SuccessRegisterState(userModel: right));
   });
 }

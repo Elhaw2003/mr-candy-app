@@ -156,20 +156,25 @@ class CreateAccountForm extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 18,),
-          const Column(
+           Column(
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    AppTexts.login,
-                    style: TextStyle(
-                        color: AppColors.grey,
-                        fontWeight: FontWeight.w400,
-                        fontSize: 12
+                  GestureDetector(
+                    onTap: (){
+                      Navigator.pop(context);
+                    },
+                    child: const Text(
+                      AppTexts.login,
+                      style: TextStyle(
+                          color: AppColors.grey,
+                          fontWeight: FontWeight.w400,
+                          fontSize: 12
+                      ),
                     ),
                   ),
-                  Text(
+                  const Text(
                     AppTexts.haveYouAccount,
                     style: TextStyle(
                         color: AppColors.grey,
@@ -179,7 +184,7 @@ class CreateAccountForm extends StatelessWidget {
                   ),
                 ],
               ),
-              Divider(
+              const Divider(
                 color: AppColors.grey,
                 height: 0,
                 indent: 90,
