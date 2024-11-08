@@ -10,9 +10,12 @@ class LoginBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return   const Stack(
+    return    const Stack(
       children: [
-        GredientColorForScreen(),
+        GredientColorForScreen(
+          color1: AppColors.blue,
+          color2: AppColors.purple,
+        ),
         Padding(
           padding: EdgeInsets.only(
             top: 80

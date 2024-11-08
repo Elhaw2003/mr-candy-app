@@ -15,7 +15,8 @@ class LoginImplementationRepo implements LoginRepo {
       {required String email, required String pass}) async {
     try {
       var response = await http
-          .post(Uri.parse(EndPoints.baseUrl + EndPoints.login), body: {
+          .post(
+          Uri.parse(EndPoints.baseUrl + EndPoints.login), body: {
         "email": email,
         "password": pass,
       });

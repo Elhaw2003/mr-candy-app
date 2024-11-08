@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mr_candy_app/core/widgets/custom_button.dart';
 import 'package:mr_candy_app/core/widgets/custom_text_form_field.dart';
 import 'package:mr_candy_app/featuers/create_account/presentation/view/create_account_screen.dart';
+import 'package:mr_candy_app/featuers/home/presentation/controller/banner/banner_cubit.dart';
+import 'package:mr_candy_app/featuers/home/presentation/view/home_screen.dart';
 import '../../../../../core/utilies/app_colors.dart';
 import '../../../../../core/utilies/app_texts.dart';
 import '../../controller/login/login_cubit.dart';
@@ -79,6 +81,10 @@ class LoginForm extends StatelessWidget {
                           email: emailController.text.trim(),
                           pass:  passwordController.text.trim(),
                       );
+                      BlocProvider.of<BannerCubit>(context).getBanner();
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (c){
+                        return const HomeScreen();
+                      }));
                     },
                   );
                 },

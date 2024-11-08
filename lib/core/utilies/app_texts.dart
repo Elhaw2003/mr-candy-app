@@ -27,4 +27,5 @@ class AppTexts{
   static const String camera = "Camera";
   static const String insertCorrectEmail = "برجاء ادخال الايميل بطريقه صحيحه";
   static const String insertCorrectPassword = "برجاء ادخال كلمه المرور بطريقه صحيحه";
+  static const String dividers = "الأقسام";
 }

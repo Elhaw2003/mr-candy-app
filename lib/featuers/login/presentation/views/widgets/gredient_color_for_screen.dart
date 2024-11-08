@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:mr_candy_app/core/utilies/app_colors.dart';
 
 class GredientColorForScreen extends StatelessWidget {
-  const GredientColorForScreen({super.key});
-
+  const GredientColorForScreen({super.key, required this.color1, required this.color2});
+  final Color color1;
+  final Color color2;
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
           gradient: LinearGradient(
             colors: [
-              AppColors.blue,
-              AppColors.purple,
+              color1,
+              color2,
             ],
             begin: Alignment.topLeft,
             end: Alignment.topRight,
