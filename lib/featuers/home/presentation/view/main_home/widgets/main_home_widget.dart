@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mr_candy_app/featuers/home/presentation/controller/banner/banner_cubit.dart';
 import 'package:mr_candy_app/featuers/home/presentation/controller/banner/banner_states.dart';
-import 'package:mr_candy_app/featuers/home/presentation/view/widgets/bannar_and_smooth_widget.dart';
 import 'package:mr_candy_app/featuers/splash/presentation/views/widgets/image_logo_widget.dart';
 
-import '../../../../../core/utilies/app_colors.dart';
-import '../../../../login/presentation/views/widgets/gredient_color_for_screen.dart';
+import '../../../../../../core/utilies/app_colors.dart';
+import '../../../../../login/presentation/views/widgets/gredient_color_for_screen.dart';
+import 'bannar_and_smooth_widget.dart';
+import 'categories_widget.dart';
 
-class HomeBody extends StatelessWidget {
-  const HomeBody({super.key});
+class MainHomeWidget extends StatelessWidget {
+  const MainHomeWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -32,17 +33,19 @@ class HomeBody extends StatelessWidget {
                 const SizedBox(height: 100,),
                 Expanded(
                   child: Container(
-                    decoration: const BoxDecoration(
-                        color: AppColors.white
+                    alignment: Alignment.centerLeft,
+                    width: double.infinity,
+                    decoration:  BoxDecoration(
+                        color: AppColors.white.withOpacity(0.95)
                     ),
-                    // child: Column(),
+                    child: const CategoriesWidget(),
                   ),
                 ),
               ],
             ),
             BlocBuilder<BannerCubit, BannerStates>(
               builder: (context, state) {
-                return  const BannerAndSmoothWidget();
+                return   BannerAndSmoothWidget();
               },
             ),
           ],

@@ -4,13 +4,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mr_candy_app/featuers/home/presentation/controller/banner/banner_cubit.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-import '../../../../../core/utilies/app_colors.dart';
+import '../../../../../../core/utilies/app_colors.dart';
 
 class BannerAndSmoothWidget extends StatelessWidget {
-  const BannerAndSmoothWidget({super.key});
+   BannerAndSmoothWidget({super.key});
+ final PageController controller = PageController();
   @override
   Widget build(BuildContext context) {
-    PageController controller = PageController();
     var bannerCubit = BlocProvider.of<BannerCubit>(context).banners;
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 24,vertical: 190),
@@ -48,7 +48,7 @@ class BannerAndSmoothWidget extends StatelessWidget {
           const SizedBox(height: 20,),
          SmoothPageIndicator(
            controller: controller,
-           count:  bannerCubit.length,
+           count:  bannerCubit.length ,
            effect:   ExpandingDotsEffect(
              spacing:  5.0,
              radius:  6.0,

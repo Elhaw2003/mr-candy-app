@@ -81,7 +81,6 @@ class LoginForm extends StatelessWidget {
                           email: emailController.text.trim(),
                           pass:  passwordController.text.trim(),
                       );
-                      BlocProvider.of<BannerCubit>(context).getBanner();
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (c){
                         return const HomeScreen();
                       }));
