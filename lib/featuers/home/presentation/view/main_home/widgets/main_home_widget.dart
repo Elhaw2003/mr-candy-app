@@ -8,12 +8,25 @@ import 'package:mr_candy_app/featuers/splash/presentation/views/widgets/image_lo
 
 import '../../../../../../core/utilies/app_colors.dart';
 import '../../../../../login/presentation/views/widgets/gredient_color_for_screen.dart';
+import '../../../controller/most_selling/most_selling_cubit.dart';
 import 'bannar_and_smooth_widget.dart';
-import 'categories_widget.dart';
+import 'items_container_body.dart';
 
-class MainHomeWidget extends StatelessWidget {
+class MainHomeWidget extends StatefulWidget {
   const MainHomeWidget({super.key});
 
+  @override
+  State<MainHomeWidget> createState() => _MainHomeWidgetState();
+}
+
+class _MainHomeWidgetState extends State<MainHomeWidget> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    BlocProvider.of<BannerCubit>(context).getBanner();
+    BlocProvider.of<CategoryCubit>(context).getCategories();
+    BlocProvider.of<MostSellingCubit>(context).getMostSelling();
+  }
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -39,20 +52,12 @@ class MainHomeWidget extends StatelessWidget {
                     decoration: BoxDecoration(
                         color: AppColors.white.withOpacity(0.95)
                     ),
-                    child: BlocBuilder<CategoryCubit, CategoryStates>(
-                      builder: (context, state) {
-                        return const CategoriesWidget();
-                      },
-                    ),
+                    child: const ItemsContainerBody(),
                   ),
                 ),
               ],
             ),
-            BlocBuilder<BannerCubit, BannerStates>(
-              builder: (context, state) {
-                return BannerAndSmoothWidget();
-              },
-            ),
+            BannerAndSmoothWidget(),
           ],
         )
       ],

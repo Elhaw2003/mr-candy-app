@@ -1,5 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mr_candy_app/featuers/home/presentation/controller/category/category_cubit.dart';
+import 'package:mr_candy_app/featuers/home/presentation/controller/category/category_state.dart';
 import '../../../../../../core/utilies/app_colors.dart';
 import '../../../../data/models/category_model.dart';
 
@@ -9,6 +12,8 @@ class CategoriesItem extends StatelessWidget {
   final CategoryModel categoryModel;
   @override
   Widget build(BuildContext context) {
+    return BlocBuilder<CategoryCubit, CategoryStates>(
+  builder: (context, state) {
     return Container(
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -35,7 +40,7 @@ class CategoriesItem extends StatelessWidget {
               errorWidget: (context, url, error) => const Icon(Icons.error_outlined),
             ),
             const SizedBox(height: 6,),
-           categoryModel==null ?CircularProgressIndicator(): Text(
+            Text(
                 categoryModel.title,
               style: const TextStyle(
                 fontWeight: FontWeight.w600,
@@ -46,5 +51,7 @@ class CategoriesItem extends StatelessWidget {
         ),
       ),
     );
+  },
+);
   }
 }

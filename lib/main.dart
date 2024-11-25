@@ -4,8 +4,10 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:mr_candy_app/core/utilies/my_hive.dart';
 import 'package:mr_candy_app/featuers/home/data/repos/banner/banner_repo_implementation.dart';
 import 'package:mr_candy_app/featuers/home/data/repos/categories/categories_repo_implementation.dart';
+import 'package:mr_candy_app/featuers/home/data/repos/most_selling/most_selling_repo_implementation.dart';
 import 'package:mr_candy_app/featuers/home/presentation/controller/banner/banner_cubit.dart';
 import 'package:mr_candy_app/featuers/home/presentation/controller/category/category_cubit.dart';
+import 'package:mr_candy_app/featuers/home/presentation/controller/most_selling/most_selling_cubit.dart';
 import 'package:mr_candy_app/featuers/home/presentation/view/home_screen.dart';
 import 'package:mr_candy_app/featuers/splash/presentation/views/splash_screen.dart';
 
@@ -19,6 +21,7 @@ void main() async {
     providers: [
       BlocProvider(create: (context) => BannerCubit(bannerRepo: BannerRepoImplementation())),
       BlocProvider(create: (context) => CategoryCubit(categoryRepo: CategoriesRepoImplementation())),
+      BlocProvider(create: (context) => MostSellingCubit(mostSellingRepo: MostSellingRepoImplementation())),
     ],
     child: const MrCandyApp(),
   ));
@@ -31,7 +34,6 @@ class MrCandyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-
         fontFamily: AppFonts.almarai,
       ),
       debugShowCheckedModeBanner: false,

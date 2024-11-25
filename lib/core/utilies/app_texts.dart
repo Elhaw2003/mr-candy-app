@@ -29,7 +29,8 @@ class AppTexts{
   static const String insertCorrectPassword = "برجاء ادخال كلمه المرور بطريقه صحيحه";
   static const String categories = "الأقسام";
   static const String settings = "الاعدادات";
-  static const String basket = "السلة";
+  static const String cart = "السلة";
   static const String favorites = "المفضلة";
   static const String home = "الرئيسيه";
+  static const String mostSelling = "الاكثر مبيعا";
 }

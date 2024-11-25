@@ -11,7 +11,7 @@ class BottomBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 70,
+      height: 75,
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30),
@@ -19,7 +19,7 @@ class BottomBarWidget extends StatelessWidget {
         ),
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          backgroundColor:  AppColors.mixPurpleAndBlue,
+          backgroundColor:  AppColors. blue2,
           currentIndex: currentIndex,
           unselectedItemColor: AppColors.white.withOpacity(0.75),
           selectedItemColor: AppColors.white,
@@ -29,25 +29,25 @@ class BottomBarWidget extends StatelessWidget {
                 icon: SvgPicture.asset(
                  currentIndex == 0 ? AppSvgImage.homeActiveIcon:AppSvgImage.homeNonActiveIcon
                 ),
-                label:  AppTexts.settings
+                label:  AppTexts.home
             ),
             BottomNavigationBarItem(
                 icon:  SvgPicture.asset(
                      AppSvgImage.favoriteNonActiveIcon
                 ),
-                label:AppTexts.basket
+                label:AppTexts.favorites
             ),
              BottomNavigationBarItem(
                icon:  SvgPicture.asset(
                    currentIndex == 2 ? AppSvgImage.cartActiveIcon:AppSvgImage.cartNonActiveIcon
                 ),
-                label:AppTexts.favorites
+                label:AppTexts.cart
             ),
              BottomNavigationBarItem(
                icon:  SvgPicture.asset(
                    AppSvgImage.settingNonActiveIcon
                 ),
-                label:AppTexts.favorites
+                label:AppTexts.settings
             ),
           ],
         ),
