@@ -23,7 +23,6 @@ class BannerAndSmoothWidget extends StatelessWidget {
               controller: controller,
               scrollDirection: Axis.horizontal,
               itemCount: bannerCubit.length,
-              // separatorBuilder: (context, index) => const SizedBox(width: 20,),
                 itemBuilder: (context, index) {
                   return  ClipRRect(
                       borderRadius: BorderRadius.circular(10),
@@ -46,7 +45,8 @@ class BannerAndSmoothWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 20,),
-         SmoothPageIndicator(
+        bannerCubit.isEmpty?const Text(""): SmoothPageIndicator(
+           // textDirection: TextDirection.ltr,
            controller: controller,
            count:  bannerCubit.length ,
            effect:   ExpandingDotsEffect(

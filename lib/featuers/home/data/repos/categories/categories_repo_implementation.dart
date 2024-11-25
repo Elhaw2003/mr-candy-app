@@ -4,24 +4,25 @@ import 'package:dartz/dartz.dart';
 import 'package:mr_candy_app/core/apis/end_points.dart';
 import 'package:mr_candy_app/core/errors/failure.dart';
 import 'package:mr_candy_app/core/utilies/app_texts.dart';
-import 'package:mr_candy_app/featuers/home/data/models/banner_model.dart';
-import 'package:mr_candy_app/featuers/home/data/repos/banner/banner_repo.dart';
 import 'package:http/http.dart'as http;
-class BannerRepoImplementation implements BannerRepo{
+
+import '../../models/category_model.dart';
+import 'categories_repo.dart';
+class CategoriesRepoImplementation implements CategoriesRepo{
   @override
-  Future<Either<Failure, List<BannerModel>>> getBanner() async{
-    List<BannerModel> banners = [];
+  Future<Either<Failure, List<CategoryModel>>> getCategories() async{
+    List<CategoryModel> categories = [];
     try{
       var response = await http.get(
-        Uri.parse(EndPoints.baseUrl + EndPoints.banners)
+        Uri.parse(EndPoints.baseUrl + EndPoints.categories)
       );
        var body = jsonDecode(response.body);
        if(body["status"]){
-         for(var data in body["data"]){
-           BannerModel bannerModel = BannerModel(image: data["image"]);
-           banners.add(bannerModel);
+         for(var data in body["data"]["data"]){
+           CategoryModel categoryModel = CategoryModel(image: data["image"], title: data["name"]);
+           categories.add(categoryModel);
          }
-         return right(banners);
+         return right(categories);
        }else{
          return left(ApiFailure(message: body["message"]));
        }

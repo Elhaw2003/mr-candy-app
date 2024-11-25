@@ -44,6 +44,7 @@ dependencies:
   hive_flutter: ^1.1.0
   cached_network_image: ^3.4.1
   flutter_svg: ^2.0.14
+  redacted: ^1.0.12
 
 dev_dependencies:
   flutter_test:

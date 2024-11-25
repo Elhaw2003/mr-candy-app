@@ -10,49 +10,43 @@ class BottomBarWidget extends StatelessWidget {
   final void Function(int)? onTap;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 73,
-      decoration: const BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30),
-          topRight: Radius.circular(30),
-        )
-      ),
+    return SizedBox(
+      height: 70,
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(30),
           topRight: Radius.circular(30),
         ),
         child: BottomNavigationBar(
-
+          type: BottomNavigationBarType.fixed,
           backgroundColor:  AppColors.mixPurpleAndBlue,
           currentIndex: currentIndex,
-          unselectedItemColor: AppColors.white,
+          unselectedItemColor: AppColors.white.withOpacity(0.75),
           selectedItemColor: AppColors.white,
-          selectedLabelStyle: const TextStyle(
-              fontSize: 13,
-              fontWeight: FontWeight.w700,
-          ),
-          unselectedLabelStyle: const TextStyle(
-              fontSize: 10,
-              fontWeight: FontWeight.w400
-          ),
           onTap: onTap,
           items:  [
             BottomNavigationBarItem(
                 icon: SvgPicture.asset(
-                  AppSvgImage.notActiveSettings
+                 currentIndex == 0 ? AppSvgImage.homeActiveIcon:AppSvgImage.homeNonActiveIcon
                 ),
                 label:  AppTexts.settings
             ),
             BottomNavigationBarItem(
                 icon:  SvgPicture.asset(
-                    AppSvgImage.notActiveBasket
+                     AppSvgImage.favoriteNonActiveIcon
                 ),
                 label:AppTexts.basket
             ),
-            const BottomNavigationBarItem(
-                icon:  Icon(Icons.favorite),
+             BottomNavigationBarItem(
+               icon:  SvgPicture.asset(
+                   currentIndex == 2 ? AppSvgImage.cartActiveIcon:AppSvgImage.cartNonActiveIcon
+                ),
+                label:AppTexts.favorites
+            ),
+             BottomNavigationBarItem(
+               icon:  SvgPicture.asset(
+                   AppSvgImage.settingNonActiveIcon
+                ),
                 label:AppTexts.favorites
             ),
           ],

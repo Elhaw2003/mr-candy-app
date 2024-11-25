@@ -1,10 +1,11 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../../../core/utilies/app_colors.dart';
 import '../../../../data/models/category_model.dart';
 
 class CategoriesItem extends StatelessWidget {
-  const CategoriesItem({super.key,required this.categoryModel});
+  const CategoriesItem({super.key, required this.categoryModel});
+
   final CategoryModel categoryModel;
   @override
   Widget build(BuildContext context) {
@@ -18,13 +19,29 @@ class CategoriesItem extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            Image.asset(
-              categoryModel.image,
-              color: AppColors.mixPurpleAndBlue,
+            CachedNetworkImage(
               height: 60,
-              width: 80,
+              width: 55,
+              fit: BoxFit.cover,
+              imageUrl: categoryModel.image != null && categoryModel.image.isNotEmpty
+                  ? categoryModel.image
+                  : 'https://via.placeholder.com/200',  // Fallback image URL
+              placeholder: (context, url) => Container(
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: AppColors.grey
+                ),
+              ),
+              errorWidget: (context, url, error) => const Icon(Icons.error_outlined),
             ),
-            Text(categoryModel.title)
+            const SizedBox(height: 6,),
+           categoryModel==null ?CircularProgressIndicator(): Text(
+                categoryModel.title,
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                color: AppColors.brown
+              ),
+            )
           ],
         ),
       ),
