@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mr_candy_app/core/utilies/app_colors.dart';
+import 'package:mr_candy_app/core/utilies/app_images.dart';
 import 'package:mr_candy_app/featuers/cart/presentation/view/cart_screen.dart';
 import 'package:mr_candy_app/featuers/favorite/presentation/view/favorite_screen.dart';
 import 'package:mr_candy_app/featuers/home/presentation/controller/most_selling/most_selling_cubit.dart';
@@ -17,11 +19,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    // TODO: implement initState
-
-  }
   int currentIndex = 0;
   List<Widget> list = [const MainHomeWidget(),const CartScreen(),const FavoriteScreen(),const SettingScreen()];
   @override

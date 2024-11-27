@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mr_candy_app/core/utilies/app_images.dart';
 import 'package:mr_candy_app/featuers/home/data/models/most_selling_model.dart';
 import 'package:mr_candy_app/featuers/home/presentation/controller/most_selling/most_selling_cubit.dart';
 import 'package:mr_candy_app/featuers/home/presentation/controller/most_selling/most_selling_state.dart';
@@ -12,8 +11,6 @@ class MostSellingGridView extends StatelessWidget {
   final MostSellingModel mostSellingModel;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<MostSellingCubit, MostSellingStates>(
-  builder: (context, state) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -113,7 +110,5 @@ class MostSellingGridView extends StatelessWidget {
         ],
       ),
     );
-  },
-);
   }
 }

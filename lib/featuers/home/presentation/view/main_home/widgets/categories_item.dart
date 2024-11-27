@@ -12,8 +12,6 @@ class CategoriesItem extends StatelessWidget {
   final CategoryModel categoryModel;
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<CategoryCubit, CategoryStates>(
-  builder: (context, state) {
     return Container(
       margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
@@ -31,12 +29,7 @@ class CategoriesItem extends StatelessWidget {
               imageUrl: categoryModel.image != null && categoryModel.image.isNotEmpty
                   ? categoryModel.image
                   : 'https://via.placeholder.com/200',  // Fallback image URL
-              placeholder: (context, url) => Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: AppColors.grey
-                ),
-              ),
+              // placeholder: (context, url) => const CircularProgressIndicator(),
               errorWidget: (context, url, error) => const Icon(Icons.error_outlined),
             ),
             const SizedBox(height: 6,),
@@ -51,7 +44,5 @@ class CategoriesItem extends StatelessWidget {
         ),
       ),
     );
-  },
-);
   }
 }
