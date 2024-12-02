@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:mr_candy_app/core/utilies/my_hive.dart';
-import 'package:mr_candy_app/featuers/home/data/repos/banner/banner_repo_implementation.dart';
-import 'package:mr_candy_app/featuers/home/data/repos/categories/categories_repo_implementation.dart';
-import 'package:mr_candy_app/featuers/home/data/repos/most_selling/most_selling_repo_implementation.dart';
-import 'package:mr_candy_app/featuers/home/presentation/controller/banner/banner_cubit.dart';
-import 'package:mr_candy_app/featuers/home/presentation/controller/category/category_cubit.dart';
-import 'package:mr_candy_app/featuers/home/presentation/controller/most_selling/most_selling_cubit.dart';
-import 'package:mr_candy_app/featuers/home/presentation/view/home_screen.dart';
-import 'package:mr_candy_app/featuers/splash/presentation/views/splash_screen.dart';
-
-import 'core/utilies/app_fonts.dart';
+import 'core/utilities/app_fonts.dart';
+import 'core/utilities/my_hive.dart';
+import 'features/home/data/repos/banner/banner_repo_implementation.dart';
+import 'features/home/data/repos/categories/categories_repo_implementation.dart';
+import 'features/home/data/repos/most_selling/most_selling_repo_implementation.dart';
+import 'features/home/presentation/controller/banner/banner_cubit.dart';
+import 'features/home/presentation/controller/category/category_cubit.dart';
+import 'features/home/presentation/controller/most_selling/most_selling_cubit.dart';
+import 'features/home/presentation/view/home_screen.dart';
+import 'features/splash/presentation/views/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

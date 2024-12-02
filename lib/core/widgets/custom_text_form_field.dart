@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mr_candy_app/core/utilies/app_colors.dart';
+import '../utilities/app_colors.dart';
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({super.key, required this.icon, required this.text, required this.controller,});
