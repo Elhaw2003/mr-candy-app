@@ -26,38 +26,37 @@ class _MainHomeWidgetState extends State<MainHomeWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
+    return ListView(
       children: [
-        Container(
-          width: double.infinity,
-          height: double.infinity,
-          decoration: const BoxDecoration(
-              gradient: LinearGradient(
-            colors: [
-              AppColors.purple,
-              AppColors.blue,
-            ],
-          )),
-          child: const Column(
-            children: [
-              SizedBox(
-                height: 200,
-                child: Center(
-                  child: ImageLogoWidget(),
-                ),
+        Stack(
+          clipBehavior: Clip.none,
+          alignment: Alignment.center,
+          children: [
+            Container(
+              width: double.infinity,
+              height: height*0.209,
+              decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    colors: [
+                      AppColors.purple,
+                      AppColors.blue2,
+                    ],
+                  )),
+            ),
+            const ImageLogoWidget(),
+            Positioned(
+              bottom: -135,
+              child: BlocBuilder<BannerCubit, BannerStates>(
+                builder: (context, state) {
+                  return  const BannerAndSmoothWidget();
+                },
               ),
-              Expanded(child: ItemsContainerBody()),
-            ],
-          ),
+            )
+          ],
         ),
-        Padding(
-          padding: const EdgeInsets.only( top: 160),
-          child: BlocBuilder<BannerCubit, BannerStates>(
-            builder: (context, state) {
-              return  const BannerAndSmoothWidget();
-            },
-          ),
-        )
+        const ItemsContainerBody(),
       ],
     );
   }

@@ -18,6 +18,7 @@ class BottomBarWidget extends StatelessWidget {
           topRight: Radius.circular(30),
         ),
         child: BottomNavigationBar(
+          elevation: 0,
           type: BottomNavigationBarType.fixed,
           backgroundColor:  AppColors. blue2,
           currentIndex: currentIndex,

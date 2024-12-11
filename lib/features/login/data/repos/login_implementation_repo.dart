@@ -37,7 +37,6 @@ class LoginImplementationRepo implements LoginRepo {
         return left(ApiFailure(message: body["message"]));
       }
     }on SocketException{
-      
       return left(NoInternet(message: AppTexts.noInterNet));
       
     }

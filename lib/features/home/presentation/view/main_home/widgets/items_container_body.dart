@@ -13,73 +13,64 @@ class ItemsContainerBody extends StatelessWidget {
   const ItemsContainerBody({super.key});
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: AppColors.white.withOpacity(0.95),
-      child: BlocBuilder<CategoryCubit, CategoryStates>(
-        builder: (context, state) {
-          return state is LoadingCategoryState
-              ? const Center(child: CircularProgressIndicator())
-              : CustomScrollView(
-                  // crossAxisAlignment: CrossAxisAlignment.end,
-                  // mainAxisAlignment: MainAxisAlignment.center,
-                  slivers: [
-                    const SliverToBoxAdapter(
-                      child: SizedBox(
-                        height: 150,
-                      ),
+    return BlocBuilder<CategoryCubit, CategoryStates>(
+      builder: (context, state) {
+        return state is LoadingCategoryState
+            ? const Center(child: CircularProgressIndicator())
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                // mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 150,
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      textAlign: TextAlign.end,
+                      AppTexts.categories,
+                      style: TextStyle(
+                          color: AppColors.mixPurpleAndBlue,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700),
                     ),
-                    const SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          textAlign: TextAlign.end,
-                          AppTexts.categories,
-                          style: TextStyle(
-                              color: AppColors.mixPurpleAndBlue,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ),
+                  ),
+                  Wrap(
+                    children: [
+                      ...BlocProvider.of<CategoryCubit>(context)
+                          .categories
+                          .map((categoryModel) {
+                        return SizedBox(
+                          width: MediaQuery.sizeOf(context).width / 3,
+                          child: CategoriesItem(categoryModel: categoryModel),
+                        );
+                      })
+                    ],
+                  ),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Text(
+                      textAlign: TextAlign.end,
+                      AppTexts.mostSelling,
+                      style: TextStyle(
+                          color: AppColors.mixPurpleAndBlue,
+                          fontSize: 15,
+                          fontWeight: FontWeight.w700),
                     ),
-                    SliverToBoxAdapter(
-                      child: Wrap(
-                        children: [
-                          ...BlocProvider.of<CategoryCubit>(context)
-                              .categories
-                              .map((categoryModel) {
-                            return SizedBox(
-                              width: MediaQuery.sizeOf(context).width / 3,
-                              child:
-                                  CategoriesItem(categoryModel: categoryModel),
-                            );
-                          })
-                        ],
-                      ),
-                    ),
-                    const SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Text(
-                          textAlign: TextAlign.end,
-                          AppTexts.mostSelling,
-                          style: TextStyle(
-                              color: AppColors.mixPurpleAndBlue,
-                              fontSize: 15,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                    ),
-                    SliverToBoxAdapter(
-                      child: BlocBuilder<MostSellingCubit, MostSellingStates>(
-                        builder: (context, state) {
-                          return state is LoadingMostSellingState?Center(child: CircularProgressIndicator()): MostSellingGridView();
-                        },
-                      ),
-                    )
-                  ],
-                );
-        },
-      ),
+                  ),
+                  const SizedBox(
+                    height: 7,
+                  ),
+                  BlocBuilder<MostSellingCubit, MostSellingStates>(
+                    builder: (context, state) {
+                      return state is LoadingMostSellingState
+                          ? const Center(child: CircularProgressIndicator())
+                          : const MostSellingGridView();
+                    },
+                  ),
+                ],
+              );
+      },
     );
   }
 }

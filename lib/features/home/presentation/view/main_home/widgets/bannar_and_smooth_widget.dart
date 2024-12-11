@@ -18,50 +18,52 @@ class _BannerAndSmoothWidgetState extends State<BannerAndSmoothWidget> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     var bannerCubit = BlocProvider.of<BannerCubit>(context).banners;
     return Column(
       children: [
         SizedBox(
-            height: 161,
-            width: double.infinity,
-            child: CarouselSlider(
-                items: [
-                  ...bannerCubit.map((banner){
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(10),
-                      child: CachedNetworkImage(
-                        width: 390,
-                        height: 161,
-                        fit: BoxFit.cover,
-                        imageUrl: banner.image != null &&
-                            banner.image.isNotEmpty
-                            ?banner.image
-                            : 'https://via.placeholder.com/200', // Fallback image URL
-                        placeholder: (context, url) =>
-                        const Center(child: CircularProgressIndicator()),
-                        errorWidget: (context, url, error) =>
-                        const Icon(Icons.error_outlined),
-                      ),
-                    );
-                  }),
-                ],
-                options: CarouselOptions(
-                  viewportFraction: 0.8,
-                  initialPage: 0,
-                  enableInfiniteScroll: true,
-                  reverse: false,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 3),
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enlargeCenterPage: true,
-                  enlargeFactor: 0.3,
-                  onPageChanged:(index,a){
-                    pageIndex = index;
-                    setState(() {});
-                  } ,
-                  scrollDirection: Axis.horizontal,
-                ))),
+          height: height*0.19,
+          width: width,
+          child: CarouselSlider(
+              items: [
+                ...bannerCubit.map((banner){
+                  return ClipRRect(
+                    borderRadius: BorderRadius.circular(10),
+                    child: CachedNetworkImage(
+                      width: width*0.9,
+                      fit: BoxFit.cover,
+                      imageUrl: banner.image != null &&
+                          banner.image.isNotEmpty
+                          ?banner.image
+                          : 'https://via.placeholder.com/200', // Fallback image URL
+                      placeholder: (context, url) =>
+                      const Center(child: CircularProgressIndicator()),
+                      errorWidget: (context, url, error) =>
+                      const Icon(Icons.error_outlined),
+                    ),
+                  );
+                }),
+              ],
+              options: CarouselOptions(
+                viewportFraction: 0.8,
+                initialPage: 0,
+                enableInfiniteScroll: true,
+                reverse: false,
+                autoPlay: true,
+                autoPlayInterval: const Duration(seconds: 3),
+                autoPlayAnimationDuration: const Duration(milliseconds: 800),
+                autoPlayCurve: Curves.fastOutSlowIn,
+                enlargeCenterPage: true,
+                enlargeFactor: 0.3,
+                onPageChanged:(index,a){
+                  pageIndex = index;
+                  setState(() {});
+                } ,
+                scrollDirection: Axis.horizontal,
+              )),
+        ),
         const SizedBox(
           height: 12,
         ),

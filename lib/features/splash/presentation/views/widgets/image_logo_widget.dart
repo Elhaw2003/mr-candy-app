@@ -9,8 +9,8 @@ class ImageLogoWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Image.asset(
         AppImages.logoSplash,
-        width: 120,
-        height: 80,
+        width:  MediaQuery.of(context).size.width*0.27,
+        height: MediaQuery.of(context).size.height*0.1,
     );
   }
 }
