@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:mr_candy_app/core/apis/end_points.dart';
@@ -22,11 +23,15 @@ class BannerRepoImplementation implements BannerRepo{
            BannerModel bannerModel = BannerModel(image: data["image"]);
            banners.add(bannerModel);
          }
+         // var r = List<BannerModel>.from((body["data"] as List).map((e)=>BannerModel(image: e ["image"])));
          return right(banners);
        }else{
          return left(ApiFailure(message: body["message"]));
        }
-    }catch(e){
+    }on SocketException{
+      return  left(NoInternet(message: AppTexts.noInterNet));
+    }
+    catch(e){
       return left(ApiFailure(message: AppTexts.error));
     }
   }

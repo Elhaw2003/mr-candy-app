@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'core/utilities/app_fonts.dart';
 import 'core/utilities/my_hive.dart';
@@ -16,6 +17,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   await Hive.openBox(MyHive.settings);
+  await ScreenUtil.ensureScreenSize();
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (context) => BannerCubit(bannerRepo: BannerRepoImplementation())),
@@ -31,14 +33,21 @@ class MrCandyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        fontFamily: AppFonts.almarai,
-      ),
-      debugShowCheckedModeBanner: false,
-      home: Hive.box(MyHive.settings).get("token") == null
-          ? const SplashScreen()
-          : const HomeScreen(),
+    return ScreenUtilInit(
+      designSize: const Size(375, 1006),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_,child ){
+       return MaterialApp(
+          theme: ThemeData(
+            fontFamily: AppFonts.almarai,
+          ),
+          debugShowCheckedModeBanner: false,
+          home: Hive.box(MyHive.settings).get("token") == null
+              ? const SplashScreen()
+              : const HomeScreen(),
+        );
+      },
     );
   }
 }

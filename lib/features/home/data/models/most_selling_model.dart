@@ -1,8 +1,8 @@
 class MostSellingModel {
   // final int id;
-  final double price;
+  final num price;
   // final double oldPrice;
-  final int discount;
+  final num discount;
   final String image;
   final String name;
   final String description;

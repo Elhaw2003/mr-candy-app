@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:mr_candy_app/core/apis/end_points.dart';
@@ -19,14 +20,17 @@ class CategoriesRepoImplementation implements CategoriesRepo{
        var body = jsonDecode(response.body);
        if(body["status"]){
          for(var data in body["data"]["data"]){
-           CategoryModel categoryModel = CategoryModel(image: data["image"], title: data["name"]);
+           CategoryModel categoryModel = CategoryModel(image: data["image"], title: data["name"], id : data["id"]);
            categories.add(categoryModel);
          }
          return right(categories);
        }else{
          return left(ApiFailure(message: body["message"]));
        }
-    }catch(e){
+    }on SocketException{
+      return left(NoInternet(message: AppTexts.noInterNet));
+    }
+    catch(e){
       return left(ApiFailure(message: AppTexts.error));
     }
   }

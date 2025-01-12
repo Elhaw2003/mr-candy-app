@@ -19,9 +19,11 @@ class MainHomeWidget extends StatefulWidget {
 class _MainHomeWidgetState extends State<MainHomeWidget> {
   @override
   void initState() {
-    BlocProvider.of<BannerCubit>(context).getBanner();
-    BlocProvider.of<CategoryCubit>(context).getCategories();
-    BlocProvider.of<MostSellingCubit>(context).getMostSelling();
+    Future.wait([
+    context.read<BannerCubit>().getBanner(),
+    BlocProvider.of<CategoryCubit>(context).getCategories(),
+    BlocProvider.of<MostSellingCubit>(context).getMostSelling(),
+    ]);
   }
 
   @override
@@ -46,13 +48,9 @@ class _MainHomeWidgetState extends State<MainHomeWidget> {
                   )),
             ),
             const ImageLogoWidget(),
-            Positioned(
+            const Positioned(
               bottom: -135,
-              child: BlocBuilder<BannerCubit, BannerStates>(
-                builder: (context, state) {
-                  return  const BannerAndSmoothWidget();
-                },
-              ),
+              child: BannerAndSmoothWidget(),
             )
           ],
         ),
